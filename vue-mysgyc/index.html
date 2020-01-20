@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript" src="http://o.cztvcloud.com/247/4939651/js/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="http://o.cztvcloud.com/247/4939651/js/jweixin-1.0.0.js"></script>
+    <script src="http://o.cztvcloud.com/269/5703083/js/share.js"></script>
+    <script src="//imgcache.qq.com/open/qcloud/video/vcplayer/TcPlayer-2.2.2.js"></script>
+    <script>
+        var k_a = true;
+        //静态文件域名路径http://o.cztvcloud.com/275/6068152
+        //接口域名
+        // var onlinedomain = 'http://d.cztvcloud.com';
+        var onlinedomain = 'apit';
+        //接口参数
+        var channel_id = '275';
+        var category_id = {
+            'lbt': 15124, //轮播图
+            'cgyw': 15124, //拆改要闻
+            'cgbd': 15123, //拆改报道
+            'cgzt': 15125, //拆改专题
+            'cgcx': 15412 //拆改成效
+
+        };
+        //rem px 换算
+        (function() {
+            var scWid = document.documentElement.offsetWidth || document.body.offsetWidth;
+            var initWid = 750;
+            var oHtml = document.getElementsByTagName("html")[0];
+            oHtml.style.fontSize = (200 * scWid / initWid) + "px";
+            window.onresize = function() {
+                var scWid = document.documentElement.offsetWidth || document.body.offsetWidth;
+                var initWid = 750;
+                var oHtml = document.getElementsByTagName("html")[0];
+                oHtml.style.fontSize = (200 * scWid / initWid) + "px";
+            }
+        })();
+    </script>
+</body>
+
+</html>
