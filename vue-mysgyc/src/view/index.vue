@@ -1,50 +1,6 @@
 <template>
   <div class="index" ref="index" v-loading="load">
-    <div class="indexHead">
-      <!-- 头部logo -->
-      <div class="headlogo">
-        <img src="http://o.cztvcloud.com/275/6068152/images/waplogo.png" />
-      </div>
-      <!-- 隐藏菜单 -->
-      <div class="hidemenubox">
-        <span class="menuTitle">导航</span>
-        <label class="menuBtn" @click="openMenu"></label>
-        <mu-drawer :open.sync="open" :docked="docked" :right="position === 'right'">
-          <mu-list toggle-nested>
-            <mu-list-item button :ripple="true" nested @click="open = false">
-              <mu-list-item-action>
-                <label class="menulogo menu_0"></label>
-              </mu-list-item-action>
-              <mu-list-item-title>首页</mu-list-item-title>
-            </mu-list-item>
-            <mu-list-item button :ripple="true" nested @click="(open = false), listFun('15124')">
-              <mu-list-item-action>
-                <label class="menulogo menu_1"></label>
-              </mu-list-item-action>
-              <mu-list-item-title>拆改要闻</mu-list-item-title>
-            </mu-list-item>
-            <mu-list-item button :ripple="true" nested @click="(open = false), listFun('15123')">
-              <mu-list-item-action>
-                <label class="menulogo menu_2"></label>
-              </mu-list-item-action>
-              <mu-list-item-title>拆改报道</mu-list-item-title>
-            </mu-list-item>
-            <mu-list-item button :ripple="true" nested @click="(open = false), listFun('15125')">
-              <mu-list-item-action>
-                <label class="menulogo menu_3"></label>
-              </mu-list-item-action>
-              <mu-list-item-title>拆改专题</mu-list-item-title>
-            </mu-list-item>
-            <mu-list-item button :ripple="true" nested @click="(open = false), listFun('15412')">
-              <mu-list-item-action>
-                <label class="menulogo menu_4"></label>
-              </mu-list-item-action>
-              <mu-list-item-title>拆改成效</mu-list-item-title>
-            </mu-list-item>
-          </mu-list>
-        </mu-drawer>
-      </div>
-    </div>
+    <topBanner></topBanner>
     <div class="indexBody">
       <mu-load-more :loading="loading" @load="loadmore" @refresh="refresh" :refreshing="refreshing">
         <!-- 轮播 -->
@@ -62,7 +18,6 @@
             </mu-carousel-item>
           </mu-carousel>
         </div>
-        <!-- 拆改报道 -->
         <div class="newsBox">
           <div class="insidenewsBox" ref="container">
             <mu-list>
@@ -83,10 +38,10 @@
                   "
                 >
                   <div class="unitTitle">{{ item.title }}</div>
-                  <!-- <div class="hit">
+                  <div class="hit">
                     <div class="eye"></div>
                     {{ item.hits_fake }}
-                  </div>-->
+                  </div>
                   <div class="unittime" v-cloak>{{ item.created_at | timestampToTimes }}</div>
                 </div>
               </div>
@@ -95,12 +50,14 @@
         </div>
       </mu-load-more>
     </div>
+    <botBanner></botBanner>
   </div>
 </template>
 
 <script>
-var name = "222";
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+import topBanner from "../components/Top-banner.vue";
+import botBanner from "../components/Bot-banner.vue";
 export default {
   name: "index",
   data() {
@@ -120,6 +77,10 @@ export default {
       title: "",
       refreshing: false
     };
+  },
+  components: {
+    botBanner,
+    topBanner
   },
   mounted() {
     this.loadFun();
@@ -340,18 +301,6 @@ body {
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
-.indexHead {
-  width: 100%;
-  height: 0.7rem;
-  padding: 0.1rem;
-  box-sizing: border-box;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 0;
-  padding-top: 0;
-}
 .headlogo {
   width: 1.2rem;
   height: 0.34rem;
@@ -384,21 +333,6 @@ body {
   width: 100%;
   flex-wrap: wrap;
 }
-.menu_0 {
-  background-image: url(../assets/images/menu_0.png);
-}
-.menu_1 {
-  background-image: url(../assets/images/menu_1.png);
-}
-.menu_2 {
-  background-image: url(../assets/images/menu_2.png);
-}
-.menu_3 {
-  background-image: url(../assets/images/menu_3.png);
-}
-.menu_4 {
-  background-image: url(../assets/images/menu_4.png);
-}
 .mu-item-action {
   min-width: 0.3rem;
 }
@@ -406,6 +340,8 @@ body {
   padding: 0.1rem;
   box-sizing: border-box;
   padding-top: 0;
+  margin-top: 0.7rem;
+  margin-bottom: 0.5rem;
 }
 .lunboBox {
   width: 100%;
@@ -452,6 +388,7 @@ body {
   float: left;
   margin: 0 0.1rem;
   position: relative;
+  z-index: -1;
   overflow: hidden;
 }
 .rollinside {
@@ -486,6 +423,7 @@ body {
   padding: 0.2rem 0.15rem;
   box-sizing: border-box;
   position: relative;
+  z-index: -1;
 }
 .hoticon {
   width: 0.11rem;
@@ -511,11 +449,14 @@ body {
   padding-bottom: 0.15rem;
   margin-top: 0.15rem;
   box-sizing: border-box;
+  position: relative;
+  z-index: -1;
 }
 .unitLeft {
   width: 1.3rem;
   height: 100%;
   position: relative;
+  z-index: -1;
   float: left;
 }
 .playicon {
@@ -540,6 +481,7 @@ body {
   padding-left: 0.06rem;
   box-sizing: border-box;
   position: relative;
+  z-index: -1;
 }
 .unitTitle {
   width: 100%;
@@ -561,6 +503,9 @@ body {
 .mu-icon-button {
   padding: 0 !important;
   width: inherit !important;
+}
+.mu-carousel {
+  z-index: -1;
 }
 .mu-carousel-indicators {
   bottom: -12px !important;
