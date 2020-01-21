@@ -8,56 +8,60 @@ import videodetails from "@/components/videodetails";
 
 Vue.use(Router);
 
-
-export default new Router({
-    routes: [{
-            path: "/",
-            name: "index",
-            component: index,
-            meta: {
-                keepAlive: true
-            }
-        },
-        {
-            path: "/newslist",
-            props: route => ({
-                idd: route.query.id
-            }), //获取到?后面的参数id，并通过在此组件内引入props的方式调用该数据
-            name: "newslist",
-            component: newslist,
-            meta: {
-                keepAlive: true
-            }
-        },
-        {
-            path: "/livelist",
-            name: "livelist",
-            component: livelist
-        },
-        {
-            path: "/newsdetails",
-            props: route => ({
-                idd: route.query.id,
-                typee: route.query.type
-            }), //获取到?后面的参数id和type
-            name: "newsdetails",
-            component: newsdetails
-        },
-        {
-            path: "/videodetails",
-            name: "videodetails",
-            component: videodetails
+const routes = [{
+        path: "/",
+        name: "index",
+        component: index,
+        meta: {
+            keepAlive: true
         }
-    ],
-    mode: "hash",
-    scrollBehavior(to, from, savedPosition) {
-        if (savedPosition) {
-            return savedPosition;
-        } else {
-            return {
-                x: 0,
-                y: 0
-            };
+    },
+    {
+        path: "/newslist",
+        props: route => ({
+            idd: route.query.id
+        }), //获取到?后面的参数id，并通过在此组件内引入props的方式调用该数据
+        name: "newslist",
+        component: newslist,
+        meta: {
+            keepAlive: true
         }
+    },
+    {
+        path: "/livelist",
+        name: "livelist",
+        component: livelist
+    },
+    {
+        path: "/newsdetails",
+        props: route => ({
+            idd: route.query.id,
+            typee: route.query.type
+        }), //获取到?后面的参数id和type
+        name: "newsdetails",
+        component: newsdetails
+    },
+    {
+        path: "/videodetails",
+        name: "videodetails",
+        component: videodetails
     }
-});
+]
+const scrollBehavior = (to, from, savedPosition) => {
+    if (savedPosition) {
+        return savedPosition;
+    } else {
+        return {
+            x: 0,
+            y: 0
+        };
+    }
+}
+
+const router = new Router({
+    mode: 'history',
+    routes,
+    scrollBehavior
+})
+
+export default router
