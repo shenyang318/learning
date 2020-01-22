@@ -51,7 +51,7 @@ export default {
   name: "Top-banner",
   data() {
     return {
-      open: true,
+      open: false,
       docked: false,
       position: "right"
     };
@@ -59,9 +59,21 @@ export default {
   methods: {
     //菜单
     openMenu() {
+      console.log(this.fxz);
       this.open = !this.open;
+      this.$emit("openshadow", "123456");
+    },
+    //跳转列表
+    listFun(id) {
+      this.$router.push({
+        path: "/newslist",
+        query: {
+          id: id
+        }
+      });
     }
-  }
+  },
+  props: ["fxz"]
 };
 </script>
 

@@ -79,6 +79,8 @@ export default {
   mounted: function() {
     document.getElementsByTagName("body")[0].style.position = "";
     this.load = true;
+    // this.id = this.$route.params.id;
+    // this.type = this.$route.params.type;
     this.id = this.idd;
     this.type = this.typee;
     this.getNews(this.type, this.id);

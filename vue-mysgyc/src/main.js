@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
 import App from "./App";
-import router from "./router";
+import router from "./router"; //相当于./router/index.js
 import Vuex from "vuex";
 import Meta from "vue-meta";
 import axios from "axios";
@@ -28,8 +28,7 @@ import {
 } from "./assets/js/api"
 
 import {
-    timestampToTimes,
-    pxtorem
+    timestampToTimes
 } from "./assets/js/common"
 Vue.use(Carousel);
 Vue.use(List);
@@ -55,6 +54,6 @@ Vue.filter('timestampToTimes', timestampToTimes)
 
 
 new Vue({
-    router,
+    router, //不简写就是router:router //将路由实例挂载到根实例上，从而让整个应用都有路由功能，通过这种方式，我们可以在任何组件内通过 this.$router 访问路由器，也可以通过 this.$route访问当前路由对象：
     render: h => h(App)
 }).$mount("#app");

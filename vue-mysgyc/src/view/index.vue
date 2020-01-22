@@ -1,6 +1,6 @@
 <template>
   <div class="index" ref="index" v-loading="load">
-    <topBanner></topBanner>
+    <topBanner :fxz="111" @openshadow="getOpen"></topBanner>
     <div class="indexBody">
       <mu-load-more :loading="loading" @load="loadmore" @refresh="refresh" :refreshing="refreshing">
         <!-- 轮播 -->
@@ -100,6 +100,10 @@ export default {
     }
   },
   methods: {
+    //获取遮罩信息
+    getOpen(v) {
+      console.log(v);
+    },
     //初始化
     loadFun() {
       this.curpage = 1;
@@ -388,7 +392,7 @@ body {
   float: left;
   margin: 0 0.1rem;
   position: relative;
-  z-index: -1;
+  z-index: 0;
   overflow: hidden;
 }
 .rollinside {
@@ -423,7 +427,7 @@ body {
   padding: 0.2rem 0.15rem;
   box-sizing: border-box;
   position: relative;
-  z-index: -1;
+  z-index: 0;
 }
 .hoticon {
   width: 0.11rem;
@@ -449,14 +453,12 @@ body {
   padding-bottom: 0.15rem;
   margin-top: 0.15rem;
   box-sizing: border-box;
-  position: relative;
-  z-index: -1;
 }
 .unitLeft {
   width: 1.3rem;
   height: 100%;
   position: relative;
-  z-index: -1;
+  z-index: 0;
   float: left;
 }
 .playicon {
@@ -481,7 +483,7 @@ body {
   padding-left: 0.06rem;
   box-sizing: border-box;
   position: relative;
-  z-index: -1;
+  z-index: 0;
 }
 .unitTitle {
   width: 100%;
@@ -505,7 +507,7 @@ body {
   width: inherit !important;
 }
 .mu-carousel {
-  z-index: -1;
+  z-index: 0;
 }
 .mu-carousel-indicators {
   bottom: -12px !important;
